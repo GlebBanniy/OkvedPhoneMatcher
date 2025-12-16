@@ -1,6 +1,6 @@
 package com.example.okvedphonematcher.service;
 
-import com.example.okvedphonematcher.domain.OkvedNode;
+import com.example.okvedphonematcher.domain.BestMatchOkved;
 import com.example.okvedphonematcher.domain.OkvedData;
 import com.example.okvedphonematcher.domain.PhoneNumber;
 
@@ -16,5 +16,5 @@ public interface OkvedMatcher {
      * @param phone нормализованный номер телефона
      * @return найденный ОКВЭД
      */
-    OkvedNode matchByPhone(OkvedData data, PhoneNumber phone);
+    BestMatchOkved matchByPhone(OkvedData data, PhoneNumber phone);
 }

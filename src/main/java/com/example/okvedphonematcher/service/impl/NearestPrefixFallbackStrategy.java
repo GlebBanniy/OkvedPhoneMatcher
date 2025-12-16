@@ -1,5 +1,6 @@
 package com.example.okvedphonematcher.service.impl;
 
+import com.example.okvedphonematcher.domain.BestMatchOkved;
 import com.example.okvedphonematcher.domain.OkvedData;
 import com.example.okvedphonematcher.domain.OkvedNode;
 import com.example.okvedphonematcher.domain.PhoneNumber;
@@ -20,7 +21,7 @@ import java.util.Objects;
 class NearestPrefixFallbackStrategy implements FallbackStrategy {
 
     @Override
-    public OkvedNode match(PhoneNumber phone, OkvedData data) {
+    public BestMatchOkved match(PhoneNumber phone, OkvedData data) {
         OkvedNode best = null;
         int bestLen = 0;
         for (OkvedNode n : flatten(data.items())) {
@@ -33,7 +34,7 @@ class NearestPrefixFallbackStrategy implements FallbackStrategy {
             }
         }
         if (Objects.nonNull(best)){
-            return best;
+            return new BestMatchOkved(best, bestLen);
         }
         throw new OkvedNotFoundException("Okved for phone " + phone.value() + " not found");
     }

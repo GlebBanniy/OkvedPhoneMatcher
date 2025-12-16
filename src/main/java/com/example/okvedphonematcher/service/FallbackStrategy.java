@@ -1,7 +1,7 @@
 package com.example.okvedphonematcher.service;
 
+import com.example.okvedphonematcher.domain.BestMatchOkved;
 import com.example.okvedphonematcher.domain.OkvedData;
-import com.example.okvedphonematcher.domain.OkvedNode;
 import com.example.okvedphonematcher.domain.PhoneNumber;
 
 /**
@@ -16,5 +16,5 @@ public interface FallbackStrategy {
      * @param data  данные ОКВЭД
      * @return найденный ОКВЭД
      */
-    OkvedNode match(PhoneNumber phone, OkvedData data);
+    BestMatchOkved match(PhoneNumber phone, OkvedData data);
 }

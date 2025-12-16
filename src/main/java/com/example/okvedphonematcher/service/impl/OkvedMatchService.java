@@ -1,5 +1,6 @@
 package com.example.okvedphonematcher.service.impl;
 
+import com.example.okvedphonematcher.domain.BestMatchOkved;
 import com.example.okvedphonematcher.domain.OkvedNode;
 import com.example.okvedphonematcher.domain.OkvedData;
 import com.example.okvedphonematcher.domain.PhoneNumber;
@@ -23,7 +24,7 @@ class OkvedMatchService implements OkvedMatcher {
     private final FallbackStrategy fallback;
 
     @Override
-    public OkvedNode matchByPhone(OkvedData data, PhoneNumber phone) {
+    public BestMatchOkved matchByPhone(OkvedData data, PhoneNumber phone) {
         OkvedNode bestNode = null;
         int bestLen = -1;
 
@@ -39,7 +40,7 @@ class OkvedMatchService implements OkvedMatcher {
             }
         }
         if (bestNode != null) {
-            return bestNode;
+            return new BestMatchOkved(bestNode, bestLen);
         }
         log.info("OKVED not found, trying use fallback strategy");
         return fallback.match(phone, data);

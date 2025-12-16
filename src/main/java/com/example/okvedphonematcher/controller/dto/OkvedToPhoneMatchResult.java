@@ -1,6 +1,6 @@
 package com.example.okvedphonematcher.controller.dto;
 
-import com.example.okvedphonematcher.domain.OkvedNode;
+import com.example.okvedphonematcher.domain.BestMatchOkved;
 import com.example.okvedphonematcher.domain.PhoneNumber;
 import io.swagger.v3.oas.annotations.media.Schema;
 
@@ -14,9 +14,17 @@ public record OkvedToPhoneMatchResult(
         String code,
 
         @Schema(description = "Наименование ОКВЭД")
-        String name
+        String name,
+
+        @Schema(description = "Длина совпадения")
+        int matchLength
 ) {
-    public static OkvedToPhoneMatchResult of(PhoneNumber number, OkvedNode node) {
-        return new OkvedToPhoneMatchResult(number.value(), node.code(), node.name());
+    public static OkvedToPhoneMatchResult of(PhoneNumber number, BestMatchOkved okved) {
+        return new OkvedToPhoneMatchResult(
+                number.value(),
+                okved.node().code(),
+                okved.node().name(),
+                okved.matchLength()
+        );
     }
 }
